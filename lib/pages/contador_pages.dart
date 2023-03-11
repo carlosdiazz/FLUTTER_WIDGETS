@@ -23,7 +23,7 @@ class _ContadorPageState extends State<ContadorPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Numero de Clicks: ',
+              'Conteo: ',
               style: _estiloTesto,
             ),
             Text(
@@ -38,12 +38,54 @@ class _ContadorPageState extends State<ContadorPage> {
 
   //todo quede aqui minuto 4
   Widget _crearBotones() {
-    return FloatingActionButton(
-      onPressed: () {
-        _conteo++;
-        setState(() {}); //Solo lo llamo para que dibuje los cambios
-      },
-      child: Icon(Icons.add_box),
+    return Row(
+      children: [
+        SizedBox(
+          width: 10.0,
+        ),
+        FloatingActionButton(
+          onPressed: _default_0,
+          child: Icon(Icons.exposure_zero),
+        ),
+        Expanded(
+          child: SizedBox(),
+        ),
+        FloatingActionButton(
+          onPressed: _restar,
+          child: Icon(Icons.remove),
+        ),
+        SizedBox(
+          width: 10.0,
+        ),
+        FloatingActionButton(
+          onPressed: _agregar,
+          child: Icon(Icons.add),
+        ),
+        SizedBox(
+          width: 30.0,
+        ),
+      ],
+      mainAxisAlignment: MainAxisAlignment.end,
     );
+  }
+
+  void _agregar() {
+    setState(() {
+      _conteo++;
+    });
+  }
+
+  void _restar() {
+    setState(() {
+      if (_conteo > 0) {
+        _conteo--;
+      }
+    });
+  }
+
+  void _default_0() {
+    setState(() {
+      _conteo = 0;
+    });
   }
 }
